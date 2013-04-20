@@ -38,6 +38,8 @@
     <ClCompile Include="MazeModel.cpp">
       <Filter>Model</Filter>
     </ClCompile>
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Point2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -51,6 +53,8 @@
     <ClInclude Include="MazeModel.h">
       <Filter>Model</Filter>
     </ClInclude>
+    <ClInclude Include="Ball.h" />
+    <ClInclude Include="Point2D.h" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />

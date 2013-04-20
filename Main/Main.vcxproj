@@ -115,6 +115,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Ball.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="MazeModel.h" />
     <ClInclude Include="pch.h" />
@@ -149,13 +150,16 @@
     <Image Include="Assets\SplashScreen.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Point2D.h" />
     <ClInclude Include="SimpleTextRenderer.h" />
     <ClInclude Include="BasicTimer.h" />
     <ClInclude Include="DirectXHelper.h" />
     <ClInclude Include="DirectXBase.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ball.cpp" />
     <ClCompile Include="MazeModel.cpp" />
+    <ClCompile Include="Point2D.cpp" />
     <ClCompile Include="SimpleTextRenderer.cpp" />
     <ClCompile Include="DirectXBase.cpp" />
     <ClCompile Include="App.xaml.cpp">
