@@ -1,9 +1,10 @@
 #pragma once
 #include "Obstacles.h"
+
 class MazeModel
 {
 public:
-	MazeModel(void);
+	explicit MazeModel(Windows::Foundation::Rect const & bounds);
 	~MazeModel(void);
 	
 	void Render(Microsoft::WRL::ComPtr<ID2D1DeviceContext> & d2dContext);

@@ -2,11 +2,8 @@
 #include "Obstacles.h"
 
 
-Obstacle::Obstacle(void)
+MazeWallObstacle::MazeWallObstacle( CPoint2D const & pt1, CPoint2D const & pt2 )
+	:m_pt1(pt1), m_pt2(pt2) 
 {
-}
 
-
-Obstacle::~Obstacle(void)
-{
 }
