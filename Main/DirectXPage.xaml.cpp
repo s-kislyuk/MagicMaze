@@ -154,8 +154,8 @@ void Main::DirectXPage::DispatcherTimer_Tick( Platform::Object^ sender, Platform
 		return;
 
 	Point pt;
-	pt.X = acce->GetCurrentReading()->AccelerationX*30;
-	pt.Y = -acce->GetCurrentReading()->AccelerationY*10;
+	pt.X = (float)acce->GetCurrentReading()->AccelerationX*30;
+	pt.Y = -(float)acce->GetCurrentReading()->AccelerationY*10;
 	m_renderer->UpdateTextPosition(pt);
 	m_renderNeeded = true;
 }

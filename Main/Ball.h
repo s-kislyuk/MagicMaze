@@ -8,6 +8,9 @@ public:
 
 	CBall UpdatePosition(CPoint2D const & acceleration, double time) const;
 
+	double GetR() const;
+	CPoint2D GetPos() const;
+
 	~CBall(void);
 private:
 	CPoint2D m_Position;

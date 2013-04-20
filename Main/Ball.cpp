@@ -21,3 +21,13 @@ CBall CBall::UpdatePosition( CPoint2D const & acceleration , double time) const
 	return res;
 
 }
+
+double CBall::GetR() const
+{
+	return m_Radius;
+}
+
+CPoint2D CBall::GetPos() const
+{
+	return m_Position;
+}
