@@ -61,6 +61,7 @@
     <ClInclude Include="Obstacles.h">
       <Filter>Model</Filter>
     </ClInclude>
+    <ClInclude Include="Direction.h" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />

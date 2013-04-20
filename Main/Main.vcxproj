@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="Direction.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="MazeModel.h" />
     <ClInclude Include="Obstacles.h" />

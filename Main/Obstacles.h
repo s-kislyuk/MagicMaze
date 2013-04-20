@@ -1,5 +1,6 @@
 #pragma once
 #include "Point2D.h"
+#include "Direction.h"
 
 class CBall;
 
@@ -7,12 +8,6 @@ class Obstacle
 {
 public:
 
-	enum EDir
-	{
-		dir_vert,
-		dir_horiz,
-		dir_error
-	};
 
 	virtual ~Obstacle(void){};
 

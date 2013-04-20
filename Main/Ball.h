@@ -1,5 +1,6 @@
 #pragma once
 #include "Point2D.h"
+#include "Direction.h"
 
 class CBall
 {
@@ -12,6 +13,8 @@ public:
 
 	double GetR() const;
 	CPoint2D GetPos() const;
+
+	void InvertVelosity(EDir dir);
 
 	~CBall(void);
 private:

@@ -26,14 +26,18 @@ void MazeModel::Render( Microsoft::WRL::ComPtr<ID2D1DeviceContext> & d2dContext 
 		obstacle->Render(d2dContext);
 }
 
-void MazeModel::Update(CPoint2D const & accel, float timeDelta )
+MazeModel::EUpdateResult MazeModel::Update(CPoint2D const & accel, float timeDelta )
 {
 	CBall newBall = m_ball.UpdatePosition(accel, timeDelta);
+	if (newBall.GetPos().DistTo(m_exit.GetPos()))
+		return res_Victory;
 	for (size_t i = 0; i<m_obstacles.size(); ++i)
 	{
 		if (m_obstacles[i]->IsIntersect(newBall))
 		{
-			if (m_obstacles[i]->GetDir() == Obstacle::dir_horiz);
+			newBall.InvertVelosity(m_obstacles[i]->GetDir() == dir_horiz ? dir_vert: dir_horiz);
 		}
 	}
+	m_ball = newBall;
+	return res_NothigInteresting;
 }

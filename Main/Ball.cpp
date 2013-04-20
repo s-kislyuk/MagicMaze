@@ -46,3 +46,11 @@ void CBall::Render( Microsoft::WRL::ComPtr<ID2D1DeviceContext> & d2dContext ) co
 	D2D1_ELLIPSE ellipse = {pt, (float)m_Radius, (float)m_Radius};
 	d2dContext->FillEllipse(ellipse, brush.Get());
 }
+
+void CBall::InvertVelosity( EDir dir )
+{
+	if (dir == dir_horiz)
+		m_Velocity.m_x *= -1;
+	else
+		m_Velocity.m_y *= -1;
+}
