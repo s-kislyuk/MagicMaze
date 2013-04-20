@@ -1,15 +1,17 @@
 #pragma once
+#include "Point2D.h"
 
 class CBall
 {
 public:
 	CBall(void);
 
-	CBall UpdatePosition(Windows::Foundation::Point const & acceleration, double time) const;
+	CBall UpdatePosition(CPoint2D const & acceleration, double time) const;
 
 	~CBall(void);
 private:
-	Windows::Foundation::Point m_Position;
-	Windows::Foundation::Point m_velocity;
+	CPoint2D m_Position;
+	CPoint2D m_Velocity;
+	double m_Radius;
 };
 

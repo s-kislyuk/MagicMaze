@@ -12,14 +12,12 @@ CBall::~CBall(void)
 {
 }
 
-CBall CBall::UpdatePosition( Windows::Foundation::Point const & acceleration , double time) const
+CBall CBall::UpdatePosition( CPoint2D const & acceleration , double time) const
 {
 	CBall res = *this;
-	res.m_velocity.X += acceleration.X*time;
-	res.m_velocity.Y += acceleration.Y*time;
+	res.m_Velocity += acceleration*time;
 
-	res.m_Position.X += res.m_velocity.X * time;
-	res.m_Position.Y += res.m_velocity.X * time;
+	res.m_Position += res.m_Velocity*time;
 	return res;
 
 }
