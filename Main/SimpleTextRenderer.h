@@ -1,6 +1,8 @@
 ﻿#pragma once
 
 #include "DirectXBase.h"
+#include "MazeModel.h"
+
 
 // This class renders simple text with a colored background.
 ref class SimpleTextRenderer sealed : public DirectXBase
@@ -17,8 +19,7 @@ public:
 	// Method for updating time-dependent objects.
 	void Update(float timeTotal, float timeDelta);
 
-	// Method to change the text position based on input events.
-	void UpdateTextPosition(Windows::Foundation::Point deltaTextPosition);
+	void UpdatePosition(Windows::Foundation::Point accel, float timeDelta);
 
 	// Methods to adjust the window background color.
 	void BackgroundColorNext();
@@ -37,4 +38,5 @@ private:
 	bool m_renderNeeded;
 	int m_backgroundColorIndex;
 	double m_fps;
+	MazeModel m_mazeModel;
 };

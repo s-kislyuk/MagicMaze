@@ -65,25 +65,25 @@ DirectXPage::DirectXPage() :
 
 void DirectXPage::OnPointerMoved(Object^ sender, PointerRoutedEventArgs^ args)
 {
-	auto currentPoint = args->GetCurrentPoint(nullptr);
-	if (currentPoint->IsInContact)
-	{
-		if (m_lastPointValid)
-		{
-			Windows::Foundation::Point delta(
-				currentPoint->Position.X - m_lastPoint.X,
-				currentPoint->Position.Y - m_lastPoint.Y
-				);
-			m_renderer->UpdateTextPosition(delta);
-			m_renderNeeded = true;
-		}
-		m_lastPoint = currentPoint->Position;
-		m_lastPointValid = true;
-	}
-	else
-	{
-		m_lastPointValid = false;
-	}
+// 	auto currentPoint = args->GetCurrentPoint(nullptr);
+// 	if (currentPoint->IsInContact)
+// 	{
+// 		if (m_lastPointValid)
+// 		{
+// 			Windows::Foundation::Point delta(
+// 				currentPoint->Position.X - m_lastPoint.X,
+// 				currentPoint->Position.Y - m_lastPoint.Y
+// 				);
+// 			//m_renderer->UpdatePosition(delta, );
+// 			//m_renderNeeded = true;
+// 		}
+// 		m_lastPoint = currentPoint->Position;
+// 		m_lastPointValid = true;
+// 	}
+// 	else
+// 	{
+// 		m_lastPointValid = false;
+// 	}
 }
 
 void DirectXPage::OnPointerReleased(Object^ sender, PointerRoutedEventArgs^ args)
@@ -117,14 +117,14 @@ void DirectXPage::OnDisplayContentsInvalidated(Object^ sender)
 
 void DirectXPage::OnRendering(Object^ sender, Object^ args)
 {
-	if (m_renderNeeded)
-	{
-		m_timer->Update();
-		m_renderer->Update(m_timer->Total, m_timer->Delta);
-		m_renderer->Render();
-		m_renderer->Present();
-		m_renderNeeded = false;
-	}
+ 	if (m_renderNeeded)
+ 	{
+ 		m_timer->Update();
+ 		m_renderer->Update(m_timer->Total, m_timer->Delta);
+ 		m_renderer->Render();
+ 		m_renderer->Present();
+ 		m_renderNeeded = false;
+ 	}
 }
 
 void DirectXPage::OnPreviousColorPressed(Object^ sender, RoutedEventArgs^ args)
@@ -152,11 +152,15 @@ void DirectXPage::LoadInternalState(IPropertySet^ state)
 void Main::DirectXPage::DispatcherTimer_Tick( Platform::Object^ sender, Platform::Object^ e )
 {
 	auto acce = Windows::Devices::Sensors::Accelerometer::GetDefault();
-	Point pt;
+	if (acce == nullptr)
+		return;
+
 	float dFactor = 30;
-	pt.Y = (float)-acce->GetCurrentReading()->AccelerationY*dFactor;
-	pt.X = (float)acce->GetCurrentReading()->AccelerationX*dFactor;
-	m_renderer->UpdateTextPosition(pt);
+	Point accel;
+	accel.X = (float)acce->GetCurrentReading()->AccelerationX*dFactor;
+	accel.Y = (float)-acce->GetCurrentReading()->AccelerationY*dFactor;
+	m_timer->Update();
+	m_renderer->UpdatePosition(accel, m_timer->Delta);
 	m_renderNeeded = true;
 
 }

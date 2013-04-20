@@ -11,6 +11,8 @@ public:
 		res_NothigInteresting,
 		res_Lose
 	};
+
+	MazeModel() {}
 	explicit MazeModel(Windows::Foundation::Rect const & bounds);
 	~MazeModel(void);
 	

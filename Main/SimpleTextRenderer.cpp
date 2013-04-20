@@ -82,6 +82,7 @@ void SimpleTextRenderer::CreateDeviceResources()
 void SimpleTextRenderer::CreateWindowSizeDependentResources()
 {
 	DirectXBase::CreateWindowSizeDependentResources();
+	m_mazeModel = MazeModel(m_windowBounds);
 
 	// Add code to create window size dependent objects here.
 }
@@ -108,35 +109,7 @@ void SimpleTextRenderer::Render()
 
 	m_d2dContext->Clear(ColorF(BackgroundColors[m_backgroundColorIndex]));
 
-	//// Position the rendered text.
-	//Matrix3x2F translation = Matrix3x2F::Translation(
-	//	m_windowBounds.Width / 2.0f - m_textMetrics.widthIncludingTrailingWhitespace / 2.0f + m_textPosition.X,
-	//	m_windowBounds.Height / 2.0f - m_textMetrics.height / 2.0f + m_textPosition.Y
-	//	);
-
-	//// Note that the m_orientationTransform2D matrix is post-multiplied here
-	//// in order to correctly orient the text to match the display orientation.
-	//// This post-multiplication step is required for any draw calls that are
-	//// made to the swap chain's target bitmap. For draw calls to other targets,
-	//// this transform should not be applied.
-	//m_d2dContext->SetTransform(translation * m_orientationTransform2D);
-
-	
-	m_d2dContext->DrawTextLayout(
-		Point2F(m_textPosition.X, m_textPosition.Y),
-		m_textLayout.Get(),
-		m_blackBrush.Get(),
-		D2D1_DRAW_TEXT_OPTIONS_NO_SNAP
-		);
-	D2D1_RECT_F rect;
-	rect.bottom = 100;
-	rect.top = 0;
-	rect.left = 0;
-	rect.right = 200;
-	Platform::String^ text = m_fps.ToString();
-
-
-	m_d2dContext->DrawText(m_fps.ToString()->Data(), m_fps.ToString()->Length(), m_textFormat.Get(), rect, m_blackBrush.Get());
+	m_mazeModel.Render(m_d2dContext);
 
 
 	// Ignore D2DERR_RECREATE_TARGET. This error indicates that the device
@@ -150,18 +123,9 @@ void SimpleTextRenderer::Render()
 	m_renderNeeded = false;
 }
 
-void SimpleTextRenderer::UpdateTextPosition(Point deltaTextPosition)
+void SimpleTextRenderer::UpdatePosition(Point accel, float timeDelta)
 {
-	m_textPosition.X += deltaTextPosition.X;
-	m_textPosition.Y += deltaTextPosition.Y;
-	if (m_textPosition.X < 0)
-		m_textPosition.X = m_windowBounds.Width;
-	if (m_textPosition.Y < 0)
-		m_textPosition.Y = m_windowBounds.Height;
-	if (m_textPosition.X > m_windowBounds.Width)
-		m_textPosition.X = 0;
-	if (m_textPosition.Y > m_windowBounds.Height)
-		m_textPosition.Y = 0;
+	m_mazeModel.Update(CPoint2D(accel.X, accel.Y), timeDelta);
 }
 
 void SimpleTextRenderer::BackgroundColorNext()
