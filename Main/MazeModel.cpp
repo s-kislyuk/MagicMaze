@@ -5,13 +5,29 @@
 
 MazeModel::MazeModel(Windows::Foundation::Rect const & bounds)
 {
-	CPoint2D const pt1(0, 0), pt2(0, bounds.Width), pt3(bounds.Height, bounds.Width), pt4(bounds.Height, 0);
-	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt1, pt2));
-	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt2, pt3));
-	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt3, pt4));
-	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt4, pt1));
+	CPoint2D const pt1(0, 0);
+	CPoint2D const pt2(0, bounds.Width);
+	CPoint2D const pt3(bounds.Height, bounds.Width);
+	CPoint2D const pt4(bounds.Height, 0);
+	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt1, dir_horiz, bounds.Width));
+	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt1, dir_vert, bounds.Height));
+	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt2, dir_vert, bounds.Height));
+	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt4, dir_horiz, bounds.Width));
+
+	srand(56);
+	
+
+	
+	for (int i =0; i < 30; ++i)
+	{
+		CPoint2D pt(rand()%(int)(bounds.Width), rand()%(int)(bounds.Height));
+
+		m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt, rand()%2 == 1 ? dir_vert: dir_horiz, rand()%30 *20));
+	}
 
 	m_ball = CBall((pt1+pt3)*0.5);
+
+	m_exit = CBall(CPoint2D(20,20));
 }
 
 
