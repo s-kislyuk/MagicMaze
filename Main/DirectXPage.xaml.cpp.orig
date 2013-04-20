@@ -151,12 +151,24 @@ void DirectXPage::LoadInternalState(IPropertySet^ state)
 
 void Main::DirectXPage::DispatcherTimer_Tick( Platform::Object^ sender, Platform::Object^ e )
 {
+<<<<<<< HEAD
 	auto acce = Windows::Devices::Sensors::Accelerometer::GetDefault();
+	if (acce == nullptr)
+		return;
+
 	Point pt;
-	double dFactor = 30;
-	pt.Y = -acce->GetCurrentReading()->AccelerationY*dFactor;
-	pt.X = acce->GetCurrentReading()->AccelerationX*dFactor;
+	pt.X = (float)acce->GetCurrentReading()->AccelerationX*30;
+	pt.Y = -(float)acce->GetCurrentReading()->AccelerationY*10;
 	m_renderer->UpdateTextPosition(pt);
+=======
+	//auto acce = Windows::Devices::Sensors::Accelerometer::GetDefault();
+	//Point pt;
+	//double dFactor = 50;
+	//pt.X = acce->GetCurrentReading()->AccelerationX*dFactor;
+	//pt.Y = -acce->GetCurrentReading()->AccelerationY*dFactor;
+	//m_renderer->UpdateTextPosition(pt);
+	
+>>>>>>> разбирался с таймером
 	m_renderNeeded = true;
 
 }
