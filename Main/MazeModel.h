@@ -1,4 +1,5 @@
 #pragma once
+#include "Obstacles.h"
 class MazeModel
 {
 public:
@@ -9,6 +10,6 @@ public:
 	void Update(float timeTotal, float timeDelta);
 
 private:
-
+	std::vector<std::shared_ptr<Obstacle> > m_obstacles;
 };
 

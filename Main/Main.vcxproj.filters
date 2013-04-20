@@ -40,6 +40,9 @@
     </ClCompile>
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Point2D.cpp" />
+    <ClCompile Include="Obstacles.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -55,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Point2D.h" />
+    <ClInclude Include="Obstacles.h">
+      <Filter>Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />

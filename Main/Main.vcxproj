@@ -118,6 +118,7 @@
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="MazeModel.h" />
+    <ClInclude Include="Obstacles.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
@@ -159,6 +160,7 @@
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="MazeModel.cpp" />
+    <ClCompile Include="Obstacles.cpp" />
     <ClCompile Include="Point2D.cpp" />
     <ClCompile Include="SimpleTextRenderer.cpp" />
     <ClCompile Include="DirectXBase.cpp" />
