@@ -25,9 +25,9 @@ MazeModel::MazeModel(Windows::Foundation::Rect const & bounds)
 		m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt, rand()%2 == 1 ? dir_vert: dir_horiz, rand()%30 *20));
 	}
 
-	m_ball = CBall((pt1+pt3)*0.5);
+	m_ball = CBall(CPoint2D(rand()%(int)(bounds.Width), rand()%(int)(bounds.Height)));
 
-	m_exit = CBall(CPoint2D(20,20));
+	m_exit = CBall(CPoint2D(rand()%(int)(bounds.Width), rand()%(int)(bounds.Height)));
 }
 
 
