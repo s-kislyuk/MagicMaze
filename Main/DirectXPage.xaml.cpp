@@ -51,13 +51,15 @@ DirectXPage::DirectXPage() :
 	m_eventToken = CompositionTarget::Rendering::add(ref new EventHandler<Object^>(this, &DirectXPage::OnRendering));
 
 	m_timer = ref new BasicTimer();
+
+
 	DispatcherTimer^ m_globalTimer = ref new DispatcherTimer;
-	m_globalTimer->Tick += ref new  Windows::Foundation::EventHandler<Platform::Object^>(this, &DirectXPage::DispatcherTimer_Tick);
+	
 	TimeSpan t;
-	t.Duration=3;
+	t.Duration = 50* 10000;
 	m_globalTimer->Interval = t;
 	m_globalTimer->Start();
-
+	m_globalTimer->Tick += ref new  Windows::Foundation::EventHandler<Platform::Object^>(this, &DirectXPage::DispatcherTimer_Tick);
 }
 
 
@@ -149,13 +151,10 @@ void DirectXPage::LoadInternalState(IPropertySet^ state)
 
 void Main::DirectXPage::DispatcherTimer_Tick( Platform::Object^ sender, Platform::Object^ e )
 {
-	auto acce = Windows::Devices::Sensors::Accelerometer::GetDefault();
-	if (acce == nullptr)
-		return;
-
-	Point pt;
+	//auto acce = Windows::Devices::Sensors::Accelerometer::GetDefault();
+	//pt.Y = -acce->GetCurrentReading()->AccelerationY*dFactor;
 	pt.X = (float)acce->GetCurrentReading()->AccelerationX*30;
 	pt.Y = -(float)acce->GetCurrentReading()->AccelerationY*10;
-	m_renderer->UpdateTextPosition(pt);
 	m_renderNeeded = true;
+
 }

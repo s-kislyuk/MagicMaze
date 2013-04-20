@@ -36,4 +36,5 @@ private:
 	Windows::Foundation::Point m_textPosition;
 	bool m_renderNeeded;
 	int m_backgroundColorIndex;
+	double m_fps;
 };
