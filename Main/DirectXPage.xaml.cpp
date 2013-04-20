@@ -153,9 +153,9 @@ void Main::DirectXPage::DispatcherTimer_Tick( Platform::Object^ sender, Platform
 {
 	auto acce = Windows::Devices::Sensors::Accelerometer::GetDefault();
 	Point pt;
-	double dFactor = 30;
-	pt.Y = -acce->GetCurrentReading()->AccelerationY*dFactor;
-	pt.X = acce->GetCurrentReading()->AccelerationX*dFactor;
+	float dFactor = 30;
+	pt.Y = (float)-acce->GetCurrentReading()->AccelerationY*dFactor;
+	pt.X = (float)acce->GetCurrentReading()->AccelerationX*dFactor;
 	m_renderer->UpdateTextPosition(pt);
 	m_renderNeeded = true;
 
