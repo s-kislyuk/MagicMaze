@@ -26,7 +26,14 @@ void MazeModel::Render( Microsoft::WRL::ComPtr<ID2D1DeviceContext> & d2dContext 
 		obstacle->Render(d2dContext);
 }
 
-void MazeModel::Update( float timeTotal, float timeDelta )
+void MazeModel::Update(CPoint2D const & accel, float timeDelta )
 {
-
+	CBall newBall = m_ball.UpdatePosition(accel, timeDelta);
+	for (size_t i = 0; i<m_obstacles.size(); ++i)
+	{
+		if (m_obstacles[i]->IsIntersect(newBall))
+		{
+			if (m_obstacles[i]->GetDir() == Obstacle::dir_horiz);
+		}
+	}
 }

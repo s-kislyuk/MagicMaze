@@ -42,3 +42,13 @@ bool MazeWallObstacle::IsIntersect( CBall const & ball ) const
 
 	return true;
 }
+
+void MazeWallObstacle::Render( Microsoft::WRL::ComPtr<ID2D1DeviceContext> & d2dContext ) const
+{
+	Microsoft::WRL::ComPtr<ID2D1SolidColorBrush> brush;
+	DX::ThrowIfFailed(d2dContext->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Black), &brush));
+	D2D1_POINT_2F const pt1 = {(float)m_pt1.m_x, (float)m_pt1.m_y};
+	D2D1_POINT_2F const pt2 = {(float)m_pt2.m_x, (float)m_pt2.m_y};
+
+	d2dContext->DrawLine(pt1, pt2, brush.Get());
+}
