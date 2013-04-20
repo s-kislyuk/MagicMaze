@@ -34,6 +34,7 @@ namespace Main
 		void OnOrientationChanged(Platform::Object^ sender);
 		void OnDisplayContentsInvalidated(Platform::Object^ sender);
 		void OnRendering(Object^ sender, Object^ args);
+		void DispatcherTimer_Tick(Platform::Object^ sender, Platform::Object^ e);
 
 		Windows::Foundation::EventRegistrationToken m_eventToken;
 
@@ -44,5 +45,6 @@ namespace Main
 		bool m_lastPointValid;
 		
 		BasicTimer^ m_timer;
+		Windows::UI::Xaml::DispatcherTimer^ m_globalTimer;
 	};
 }

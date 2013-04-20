@@ -51,6 +51,13 @@ DirectXPage::DirectXPage() :
 	m_eventToken = CompositionTarget::Rendering::add(ref new EventHandler<Object^>(this, &DirectXPage::OnRendering));
 
 	m_timer = ref new BasicTimer();
+	DispatcherTimer^ m_globalTimer = ref new DispatcherTimer;
+	m_globalTimer->Tick += ref new  Windows::Foundation::EventHandler<Platform::Object^>(this, &DirectXPage::DispatcherTimer_Tick);
+	TimeSpan t;
+	t.Duration=1000;
+	m_globalTimer->Interval = t;
+	m_globalTimer->Start();
+
 }
 
 
@@ -138,4 +145,9 @@ void DirectXPage::SaveInternalState(IPropertySet^ state)
 void DirectXPage::LoadInternalState(IPropertySet^ state)
 {
 	m_renderer->LoadInternalState(state);
+}
+
+void Main::DirectXPage::DispatcherTimer_Tick( Platform::Object^ sender, Platform::Object^ e )
+{
+
 }
