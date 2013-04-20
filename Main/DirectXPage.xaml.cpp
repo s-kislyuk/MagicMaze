@@ -54,7 +54,7 @@ DirectXPage::DirectXPage() :
 	DispatcherTimer^ m_globalTimer = ref new DispatcherTimer;
 	m_globalTimer->Tick += ref new  Windows::Foundation::EventHandler<Platform::Object^>(this, &DirectXPage::DispatcherTimer_Tick);
 	TimeSpan t;
-	t.Duration=1000;
+	t.Duration=3;
 	m_globalTimer->Interval = t;
 	m_globalTimer->Start();
 
