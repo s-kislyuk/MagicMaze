@@ -22,6 +22,9 @@
     <Image Include="Assets\SplashScreen.png">
       <Filter>Assets</Filter>
     </Image>
+    <Filter Include="Model">
+      <UniqueIdentifier>{82b0c3e8-48d8-4e89-8b1b-a43c6d57b0b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -32,6 +35,9 @@
     <ClCompile Include="App.xaml.cpp" />
     <ClCompile Include="DirectXPage.xaml.cpp" />
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="MazeModel.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -42,6 +48,9 @@
     <ClInclude Include="DirectXHelper.h" />
     <ClInclude Include="DirectXBase.h" />
     <ClInclude Include="Header.h" />
+    <ClInclude Include="MazeModel.h">
+      <Filter>Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
