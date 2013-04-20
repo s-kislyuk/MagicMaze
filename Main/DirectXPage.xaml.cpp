@@ -150,6 +150,9 @@ void DirectXPage::LoadInternalState(IPropertySet^ state)
 void Main::DirectXPage::DispatcherTimer_Tick( Platform::Object^ sender, Platform::Object^ e )
 {
 	auto acce = Windows::Devices::Sensors::Accelerometer::GetDefault();
+	if (acce == nullptr)
+		return;
+
 	Point pt;
 	pt.X = acce->GetCurrentReading()->AccelerationX*30;
 	pt.Y = -acce->GetCurrentReading()->AccelerationY*10;
