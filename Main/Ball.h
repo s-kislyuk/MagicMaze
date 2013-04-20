@@ -5,6 +5,7 @@ class CBall
 {
 public:
 	CBall(void);
+	explicit CBall(CPoint2D const & pos, double r = 10.0);
 
 	CBall UpdatePosition(CPoint2D const & acceleration, double time) const;
 

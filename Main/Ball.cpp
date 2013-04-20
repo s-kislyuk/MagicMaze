@@ -7,6 +7,11 @@ CBall::CBall(void)
 {
 }
 
+CBall::CBall( CPoint2D const & pos, double r /*= 10.0*/ ) : m_Position(pos), m_Radius(r)
+{
+
+}
+
 
 CBall::~CBall(void)
 {

@@ -10,6 +10,8 @@ MazeModel::MazeModel(Windows::Foundation::Rect const & bounds)
 	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt2, pt3));
 	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt3, pt4));
 	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt4, pt1));
+
+	m_ball = CBall((pt1+pt3)*0.5);
 }
 
 

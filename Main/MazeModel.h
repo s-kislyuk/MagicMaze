@@ -1,5 +1,6 @@
 #pragma once
 #include "Obstacles.h"
+#include "Ball.h"
 
 class MazeModel
 {
@@ -12,5 +13,6 @@ public:
 
 private:
 	std::vector<std::shared_ptr<Obstacle> > m_obstacles;
+	CBall m_ball;
 };
 
