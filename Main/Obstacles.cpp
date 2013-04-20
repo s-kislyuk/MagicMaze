@@ -21,6 +21,7 @@ MazeWallObstacle::MazeWallObstacle( CPoint2D const & pt1, EDir dir, double dLeng
 	else 
 		pt.m_y += dLength;
 	m_pt2 = pt;
+	m_length = m_pt1.DistTo(m_pt2);
 }
 
 bool MazeWallObstacle::IsIntersect( CBall const & ball ) const
@@ -32,7 +33,7 @@ bool MazeWallObstacle::IsIntersect( CBall const & ball ) const
 	if (m_pt1.SquareDistTo(pt) < sqrR || m_pt2.SquareDistTo(pt) < sqrR)
 		return true;
 
-	double const h = fabs(CrossProduct(m_pt1 - pt, m_pt2 - pt)) / m_length;
+	double const h = 0.5 * fabs(CrossProduct(m_pt1 - pt, m_pt2 - pt)) / m_length;
 	if (h >= r)
 		return false;
 

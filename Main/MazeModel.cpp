@@ -1,20 +1,21 @@
 #include "pch.h"
 #include "MazeModel.h"
 #include "Point2D.h"
+#include <time.h>
 
 
 MazeModel::MazeModel(Windows::Foundation::Rect const & bounds)
 {
-	CPoint2D const pt1(0, 0);
-	CPoint2D const pt2(0, bounds.Width);
-	CPoint2D const pt3(bounds.Height, bounds.Width);
-	CPoint2D const pt4(bounds.Height, 0);
-	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt1, dir_horiz, bounds.Width));
-	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt1, dir_vert, bounds.Height));
-	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt2, dir_vert, bounds.Height));
-	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt4, dir_horiz, bounds.Width));
+	CPoint2D const pt1(10, 10);
+	CPoint2D const pt4(10, bounds.Height-10);
+	
+	CPoint2D const pt2(bounds.Width-10, 10);
+	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt1, dir_horiz, bounds.Width-20));
+	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt1, dir_vert, bounds.Height-20));
+	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt2, dir_vert, bounds.Height-20));
+	m_obstacles.push_back(std::make_shared<MazeWallObstacle>(pt4, dir_horiz, bounds.Width-20));
 
-	srand(56);
+	srand(time(0));
 	
 
 	
@@ -45,8 +46,8 @@ void MazeModel::Render( Microsoft::WRL::ComPtr<ID2D1DeviceContext> & d2dContext 
 MazeModel::EUpdateResult MazeModel::Update(CPoint2D const & accel, float timeDelta )
 {
 	CBall newBall = m_ball.UpdatePosition(accel, timeDelta);
-	if (newBall.GetPos().DistTo(m_exit.GetPos()))
-		return res_Victory;
+	/*if (newBall.GetPos().DistTo(m_exit.GetPos()))
+		return res_Victory;*/
 	for (size_t i = 0; i<m_obstacles.size(); ++i)
 	{
 		if (m_obstacles[i]->IsIntersect(newBall))

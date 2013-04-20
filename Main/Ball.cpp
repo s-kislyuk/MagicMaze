@@ -21,9 +21,9 @@ CBall::~CBall(void)
 CBall CBall::UpdatePosition( CPoint2D const & acceleration , double time) const
 {
 
-	double d_max_vel = 20;
+	double d_max_vel = 100;
 	CBall res = *this;
-	res.m_Velocity += acceleration*time;
+	res.m_Velocity += acceleration*time *10;
 	if (res.m_Velocity.m_x > d_max_vel)
 		res.m_Velocity.m_x = d_max_vel;
 	if (res.m_Velocity.m_y > d_max_vel)
